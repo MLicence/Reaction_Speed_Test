@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reaction Speed Test</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="header">
+        <p class="eyebrow">Challenge</p>
+        <h1>Reaction Speed Test</h1>
+      </header>
+
+      <div class="controls">
+        <button id="startBtn" class="primary-btn">Start test</button>
+        <button id="resetBtn" class="secondary-btn">Reset stats</button>
+      </div>
+
+      <div id="gameArea" class="game-area waiting" role="button" tabindex="0" aria-label="Reaction game area">
+        <span id="gameText">Press Start</span>
+      </div>
+
+      <section class="stats" aria-live="polite">
+        <div class="stat-card">
+          <span class="label">Last</span>
+          <strong id="lastTime">--</strong>
+        </div>
+        <div class="stat-card">
+          <span class="label">Best</span>
+          <strong id="bestTime">--</strong>
+        </div>
+        <div class="stat-card">
+          <span class="label">Average</span>
+          <strong id="averageTime">--</strong>
+        </div>
+        <div class="stat-card">
+          <span class="label">Attempts</span>
+          <strong id="attemptCount">0</strong>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
