@@ -11,6 +11,8 @@
   --success: #22c55e;
   --danger: #f87171;
   --shadow: rgba(15, 23, 42, 0.45);
+
+  --reaction-colors: #ff4d4d, #ff8a00, #ffd93d, #7cff6b, #00e676, #00d9ff, #3b82f6, #8b5cf6, #ff4ecf, #ff6b6b;
 }
 
 * {
@@ -23,7 +25,7 @@ body {
   display: grid;
   place-items: center;
   font-family: Arial, Helvetica, sans-serif;
-  background: radial-gradient(circle at top, #1f2937 0%, var(--bg-1) 45%, var(--bg-2) 100%);
+  background: /*radial-gradient(circle at top, #000000 0%, var(--bg-1) 45%, var(--bg-2) 100%);8?*/ #000000;
   color: var(--text);
 }
 
@@ -81,6 +83,11 @@ button:active {
   transform: translateY(1px);
 }
 
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .primary-btn {
   background: linear-gradient(135deg, var(--primary), var(--primary-strong));
   color: white;
@@ -115,9 +122,9 @@ button:active {
 }
 
 .game-area.ready {
-  background: linear-gradient(135deg, var(--success), #16a34a);
+  background: var(--trial-color, #22c55e);
   color: white;
-  box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.2), 0 18px 32px rgba(34, 197, 94, 0.2);
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.12), 0 18px 32px rgba(0, 0, 0, 0.18);
 }
 
 .game-area.error {
