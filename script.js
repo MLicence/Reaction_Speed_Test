@@ -319,11 +319,9 @@ function finishNoPress() {
   }
 
   if (colour === 'red' && currentStage().id === 'discrimination') {
-    recordTrial({ colour, correct: true, outcome: 'correct_no_press' });
-    state.counts.red += 1;
-    feedback.textContent = 'Correct: no response for red.';
-    setPhase('feedback', 'Correct');
-    advanceAfterValidTrial();
+    feedback.textContent = 'Red ignored.';
+    setPhase('feedback', 'Red ignored');
+    scheduleRepeat();
     return;
   }
 
@@ -353,6 +351,13 @@ function handleResponse(event) {
   const colour = state.currentColour;
   const expectedKey = currentStage().responseKeys[colour];
   const reactionMs = Math.round(performance.now() - state.stimulusStartedAt);
+
+  if (colour === 'red' && currentStage().id === 'discrimination') {
+    feedback.textContent = 'Red ignored.';
+    setPhase('feedback', 'Red ignored');
+    scheduleRepeat();
+    return;
+  }
 
   if (event.code !== expectedKey) {
     recordTrial({ colour, responseKey: event.code, reactionMs: '', correct: false, outcome: 'incorrect_response' });
@@ -457,6 +462,9 @@ function summaryRows() {
   const rows = [];
   stages.forEach((stage) => {
     Object.keys(stage.required).forEach((colour) => {
+      if (stage.id === 'discrimination' && colour === 'red') {
+        return;
+      }
       const records = reactionRecords().filter((record) => record.stage === stage.id && record.colour === colour);
       const stats = calculateStats(records);
       rows.push({ stage: stage.id, colour, ...stats });
